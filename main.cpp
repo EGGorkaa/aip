@@ -1,4 +1,6 @@
 #include <iostream>
+#include <climits>
+#include <cstdlib>
 
 bool isPyth(unsigned a, unsigned b, unsigned c);
 
@@ -23,6 +25,15 @@ int main(){
 }
 
 bool isPyth (unsigned a, unsigned b, unsigned c){
+  if (a > 0 && a > UINT_MAX / a){
+    std::cerr << "overflow error\n"; std::exit(2);
+  }
+  if (b > 0 && b > UINT_MAX / b){
+    std::cerr << "overflow error\n"; std::exit(2);
+  }
+  if (c > 0 && c > UINT_MAX / c){
+    std::cerr << "overflow error\n"; std::exit(2);
+  }
   bool p = a*a==(b*b+c*c);
   p = p||b*b==(a*a+c*c);
   p = p||c*c==(a*a+b*b);
